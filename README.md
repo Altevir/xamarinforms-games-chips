@@ -1,5 +1,5 @@
 # Xamarin.Forms Games (Chips)
-Projeto de exemplo pra mostrar como criar os chamados "Chips" (sem plugin), usado para filtragem de dados, etc.
+Projeto de exemplo pra mostrar como criar os chamados "Chips" (sem plugin), usado para seleção/filtragem de dados, etc.
 O que foi usado no desenvolvimento:
 - Padrão MVVM (sem framework)
 - PancakeView (https://github.com/sthewissen/Xamarin.Forms.PancakeView)
