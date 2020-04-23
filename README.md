@@ -3,7 +3,7 @@ Projeto de exemplo pra mostrar como criar os chamados "Chips" (sem plugin), usad
 O que foi usado no desenvolvimento:
 - Padrão MVVM (sem framework)
 - PancakeView (https://github.com/sthewissen/Xamarin.Forms.PancakeView)
-- Font (Embedded) <br/> Exemplo: https://devblogs.microsoft.com/xamarin/embedded-fonts-xamarin-forms/
+- Font Embedded <br/> Exemplo: https://devblogs.microsoft.com/xamarin/embedded-fonts-xamarin-forms/
 - CollectionView
 - XamarinForms 4.5.0.617
 
