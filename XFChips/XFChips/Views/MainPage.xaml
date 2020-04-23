@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XFChips.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:fonticons="clr-namespace:XFChips.Fonts"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:XFChips.Models"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:viewmodels="clr-namespace:XFChips.ViewModels"
+    ios:Page.UseSafeArea="True"
+    x:DataType="viewmodels:MainPageViewModel"
+    BackgroundColor="#465141"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Image
+            Aspect="AspectFill"
+            HorizontalOptions="FillAndExpand"
+            Source="the_last_of_us_background.jpg"
+            VerticalOptions="FillAndExpand" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0"
+                Margin="{OnPlatform Android='0,5,14,0',
+                                    iOS='0,10,14,10'}"
+                RowSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    Margin="20,10,0,0"
+                    FontSize="Large"
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource fontBold}"
+                    Text="Games -"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="1"
+                    Margin="0,12,0,0"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontSize="Micro"
+                                Style="{StaticResource fontBold}"
+                                Text="Atualizado: "
+                                TextColor="White" />
+                            <Span
+                                FontSize="Micro"
+                                Text="Abril, 22 | 2020"
+                                TextColor="White" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Frame
+                    Grid.Column="2"
+                    Margin="0,10,0,0"
+                    Padding="1.2"
+                    BackgroundColor="White"
+                    CornerRadius="18"
+                    HasShadow="False"
+                    HeightRequest="36"
+                    HorizontalOptions="CenterAndExpand"
+                    IsClippedToBounds="True"
+                    VerticalOptions="CenterAndExpand"
+                    WidthRequest="36">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        CornerRadius="18"
+                        HasShadow="False"
+                        HeightRequest="36"
+                        HorizontalOptions="CenterAndExpand"
+                        IsClippedToBounds="True"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="36">
+                        <Image Aspect="Fill" Source="gamer.png" />
+                    </Frame>
+                </Frame>
+            </Grid>
+            <ScrollView
+                Grid.Row="1"
+                HorizontalScrollBarVisibility="Never"
+                Orientation="Vertical">
+                <FlexLayout
+                    x:Name="listGames"
+                    Padding="8"
+                    AlignItems="Start"
+                    BindableLayout.ItemsSource="{Binding Games}"
+                    Direction="Row"
+                    JustifyContent="Start"
+                    Wrap="Wrap">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:Game">
+                            <Frame
+                                Margin="5,4"
+                                Padding="0"
+                                CornerRadius="{OnPlatform Android='30',
+                                                          iOS='16'}"
+                                HasShadow="False"
+                                HorizontalOptions="FillAndExpand"
+                                IsClippedToBounds="True"
+                                Opacity="0.7"
+                                VerticalOptions="FillAndExpand"
+                                Visual="Material">
+                                <Label
+                                    Padding="20,10"
+                                    BackgroundColor="{Binding colorBackground}"
+                                    FontSize="Small"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding name}"
+                                    TextColor="{Binding colorText}"
+                                    VerticalOptions="FillAndExpand">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.SelectGameCommand, Source={x:Reference listGames}}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </ScrollView>
+            <Grid Grid.Row="2" Margin="20,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    Margin="0,8,0,0"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource fontBold}"
+                    Text="Jogos selecionados" />
+                <Frame
+                    Grid.Column="1"
+                    Padding="0"
+                    BackgroundColor="#465141"
+                    CornerRadius="18"
+                    HasShadow="False"
+                    HeightRequest="36"
+                    HorizontalOptions="Start"
+                    IsClippedToBounds="True"
+                    VerticalOptions="Start"
+                    WidthRequest="36">
+                    <Label
+                        FontSize="Micro"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource fontBold}"
+                        Text="{Binding CountItems}"
+                        VerticalOptions="Center" />
+                </Frame>
+                <Label
+                    x:Name="lbSortGames"
+                    Grid.Column="2"
+                    Margin="0,5,15,0"
+                    FontFamily="Fontello"
+                    FontSize="20"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding IsVisibleSort}"
+                    Text="{Binding IconOrderBy}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SortGamesCommand}"
+                            CommandParameter="{Binding Source={x:Reference lbSortGames}, Path=Text}"
+                            NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            <CollectionView
+                x:Name="listItems"
+                Grid.Row="3"
+                Margin="20,0,0,0"
+                HorizontalOptions="FillAndExpand"
+                ItemSizingStrategy="MeasureFirstItem"
+                ItemsSource="{Binding SelectedGames}"
+                VerticalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Game">
+                        <Grid Padding="0,0,0,10" HorizontalOptions="FillAndExpand">
+                            <pancake:PancakeView
+                                Margin="60,0,0,0"
+                                Padding="10"
+                                BackgroundColor="#465141"
+                                CornerRadius="{OnPlatform Android='0,20,0,20',
+                                                          iOS='0,16,0,16'}"
+                                HasShadow="False"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start">
+                                <Label
+                                    Margin="10,0"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="{Binding name}"
+                                    VerticalOptions="Center" />
+                            </pancake:PancakeView>
+                            <pancake:PancakeView
+                                BackgroundColor="White"
+                                CornerRadius="10"
+                                Elevation="8"
+                                HasShadow="False"
+                                HorizontalOptions="Start"
+                                WidthRequest="72">
+                                <Image
+                                    Aspect="Fill"
+                                    HeightRequest="96"
+                                    Source="{Binding image}"
+                                    WidthRequest="72" />
+                            </pancake:PancakeView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </Grid>
+</ContentPage>
